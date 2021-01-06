@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: center;
+        }
+
+        header h1 {
+            color: black;
+            font-size: 230%;
+            font-weight: bolder;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 7%;
+        }
+
+        main section#error {
+            text-align: start;
+            color: red;
+            margin-bottom: 2px;
+            padding-left: 22%;
+        }
+
+        main section#error span {
+            display: inline;
+        }
+
+        input {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid rgba(0, 0, 255, 0.212);
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+        }
+
+        input:focus {
+            border: 3px solid rgb(55, 178, 255);
+        }
+
+        input[type=submit] {
+            background-color: rgba(116, 201, 254, 0.726);
+            border: 1px solid white;
+            border-radius: 60px;
+            color: white;
+            font-size: larger;
+            font-weight: bolder;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: rgb(125, 116, 254);
+            opacity: 0.9;
+            color: rgb(255, 248, 220);
+        }
+
+        main section#login-option {
+            margin: auto;
+            width: 50%;
+            text-align: left;
+        }
+
+        a:link,
+        a:visited {
+            color: rgb(116, 202, 254);
+            font-size: 20px;
+            font-weight: bolder;
+            text-decoration: none;
+            width: 300px;
+        }
+
+        a:hover,
+        a:active {
+            color: rgb(125, 116, 254);
+        }
+    </style>
+    <title>{{title}} | {{subtitle}}</title>
+</head>
+
+<body>
+    <header>
+        <h1>Create an account</h1>
+    </header>
+    <main>
+        <section id="error">
+            {{#if message}}
+            <span>{{message}}</span>
+            {{/if}}
+        </section>
+        <section id="signup-form">
+            <form action="/signup" method="post" autocomplete="off">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Sign Up">
+            </form>
+        </section>
+        <section id="login-option">
+            <div>
+                <p>Already a user? <a href="/login">Login</a></p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

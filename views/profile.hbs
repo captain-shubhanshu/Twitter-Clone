@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: justify;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        header h1 {
+            color: black;
+            font-size: 230%;
+            font-weight: bolder;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header {
+            margin: 15px 15px 15px 0px;
+        }
+
+        ul#navigation {
+            list-style-type: none;
+            margin: 5px 0px 5px 0px;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgba(116, 201, 254, 0.726);
+        }
+
+        ul#navigation li {
+            float: left;
+        }
+
+        ul#navigation li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        ul#navigation li a:hover:not(.active) {
+            background-color: rgb(60, 110, 158);
+        }
+
+        ul#navigation li a.active {
+            background-color: rgb(125, 116, 254);
+        }
+
+        input[type=text] {
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            padding: 6px;
+        }
+
+        main section p {
+            display: inline;
+            margin-left: 1%;
+        }
+
+        .post {
+            width: 50%;
+            margin: auto;
+            padding: 5px;
+            height: fit-content;
+            border-bottom: 1px solid rgb(178, 178, 184);
+            box-sizing: border-box;
+        }
+    </style>
+    <title>{{title}} | {{subtitle}}</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="header">{{name}}</h1>
+        <p class="header">@<strong><em>{{username}}</em></strong></p>
+    </header>
+    <main>
+        <section>
+            <p><strong>{{posts.length}}</strong> posts</p>
+            <p><a href="/followers" style="text-decoration: none;"><strong>{{followers}}</strong> Followers</a></p>
+            <p><a href="/following" style="text-decoration: none;"><strong>{{following}}</strong> Following</a></p>
+        </section>
+        <section>
+            <ul id="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/explore">Explore</a></li>
+                <li><a class="active" href="/profile">My Profile</a></li>
+                <li><a href="/createpost">Create Post</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </section>
+        <section>
+            <form action="/profile/users" method="get" autocomplete="off">
+                <input type="text" name="username" placeholder="Search by username">
+            </form>
+        </section>
+        <section>
+            {{#if posts}}
+            <div class="my-posts">
+                <div>
+                    <h2>My Posts</h2>
+                    <hr>
+                </div>
+                {{#each posts as |post|}}
+                <div class="post">
+                    <div id="title">
+                        <h3>{{post.title}}</h3>
+                    </div>
+                    <div id="content">
+                        <p>{{post.content}}</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </section>
+    </main>
+</body>
+
+</html>

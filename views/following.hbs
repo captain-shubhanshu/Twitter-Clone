@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: justify;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        header h1 {
+            color: black;
+            font-size: 230%;
+            font-weight: bolder;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header {
+            margin: 15px 15px 15px 0px;
+        }
+
+        ul#navigation {
+            list-style-type: none;
+            margin: 5px 0px 5px 0px;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgba(116, 201, 254, 0.726);
+        }
+
+        ul#navigation li {
+            float: left;
+        }
+
+        ul#navigation li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        ul#navigation li a:hover:not(.active) {
+            background-color: rgb(60, 110, 158);
+        }
+
+        input[type=text] {
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            padding: 6px;
+        }
+
+        .followings {
+            width: 50%;
+            padding: 5px;
+            height: fit-content;
+            border-bottom: 1px solid rgb(178, 178, 184);
+            box-sizing: border-box;
+        }
+
+        div#name,
+        form#follow-unfollow {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        #unfollow {
+            background-color: rgba(116, 201, 254, 0.726);
+            border: 1px solid white;
+            border-radius: 60px;
+            color: white;
+            padding: 5px 7px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        #unfollow:hover {
+            background-color: rgb(125, 116, 254);
+            opacity: 0.9;
+            color: rgb(255, 248, 220);
+        }
+    </style>
+    <title>{{title}} | {{subtitle}}</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="header">{{name}}</h1>
+        <p class="header">@<strong><em>{{username}}</em></strong></p>
+    </header>
+    <main>
+        <section>
+            <ul id="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/explore">Explore</a></li>
+                <li><a href="/profile">My Profile</a></li>
+                <li><a href="/createpost">Create Post</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </section>
+        <section>
+            <form action="/profile/users" method="get" autocomplete="off">
+                <input type="text" name="username" placeholder="Search by username">
+            </form>
+        </section>
+        <section>
+            {{#if users}}
+            <div class="my-followings">
+                <div>
+                    <h2>Followings</h2>
+                    <hr>
+                </div>
+                {{#each users as |user|}}
+                <div class="followings">
+                    <div id="name">
+                        <p>{{user.name}}</p>
+                    </div>
+                    <form action="/unfollow?unfollowId={{user._id}}&_method=PUT" method="post" id="follow-unfollow">
+                        <input type="hidden" name="_method" value="PUT">
+                        <button id="unfollow">Unfollow</button>
+                    </form>
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </section>
+    </main>
+</body>
+
+</html>
