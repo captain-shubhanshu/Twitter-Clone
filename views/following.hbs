@@ -22,19 +22,24 @@
             margin: 15px 15px 15px 0px;
         }
 
-        ul#navigation {
+        .navbar {
+            position: sticky;
+            top: 0px;
+        }
+
+        #navigation {
             list-style-type: none;
             margin: 5px 0px 5px 0px;
             padding: 0;
             overflow: hidden;
-            background-color: rgba(116, 201, 254, 0.726);
+            background-color: rgb(44, 41, 88);
         }
 
-        ul#navigation li {
+        #navigation li {
             float: left;
         }
 
-        ul#navigation li a {
+        #navigation li a {
             display: block;
             color: white;
             text-align: center;
@@ -42,7 +47,7 @@
             text-decoration: none;
         }
 
-        ul#navigation li a:hover:not(.active) {
+        #navigation li a:hover:not(.active) {
             background-color: rgb(60, 110, 158);
         }
 
@@ -96,7 +101,7 @@
         <p class="header">@<strong><em>{{username}}</em></strong></p>
     </header>
     <main>
-        <section>
+        <section class="navbar">
             <ul id="navigation">
                 <li><a href="/home">Home</a></li>
                 <li><a href="/explore">Explore</a></li>

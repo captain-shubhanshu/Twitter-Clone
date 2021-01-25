@@ -22,19 +22,24 @@
             margin: 15px 15px 15px 0px;
         }
 
-        ul#navigation {
+        .navbar {
+            position: sticky;
+            top: 0px;
+        }
+
+        #navigation {
             list-style-type: none;
             margin: 5px 0px 5px 0px;
             padding: 0;
             overflow: hidden;
-            background-color: rgba(116, 201, 254, 0.726);
+            background-color: rgb(44, 41, 88);
         }
 
-        ul#navigation li {
+        #navigation li {
             float: left;
         }
 
-        ul#navigation li a {
+        #navigation li a {
             display: block;
             color: white;
             text-align: center;
@@ -42,7 +47,7 @@
             text-decoration: none;
         }
 
-        ul#navigation li a:hover:not(.active) {
+        #navigation li a:hover:not(.active) {
             background-color: rgb(60, 110, 158);
         }
 
@@ -96,7 +101,7 @@
         <p class="header">@<strong><em>{{username}}</em></strong></p>
     </header>
     <main>
-        <section>
+        <section class="navbar">
             <ul id="navigation">
                 <li><a href="/home">Home</a></li>
                 <li><a href="/explore">Explore</a></li>
@@ -112,25 +117,25 @@
         </section>
         <section>
             {{#if users}}
-            <div class="my-followers"S>
-                <div>
-                    <h2>Followers</h2>
-                    <hr>
-                </div>
-                {{#each users as |user|}}
-                <div class="followers">
-                    <div id="name">
-                        <a href="/profile/user?id={{user._id}}" style="text-decoration: none;">
-                            <p>{{user.name}}</p>
-                        </a>
+                <div class="my-followers" S>
+                    <div>
+                        <h2>Followers</h2>
+                        <hr>
                     </div>
-                    <form action="/follow?followId={{user._id}}&_method=PUT" method="post" id="follow-unfollow">
-                        <input type="hidden" name="_method" value="PUT">
-                        <button id="follow">Follow</button>
-                    </form>
+                    {{#each users as |user|}}
+                        <div class="followers">
+                            <div id="name">
+                                <a href="/profile/user?id={{user._id}}" style="text-decoration: none;">
+                                    <p>{{user.name}}</p>
+                                </a>
+                            </div>
+                            <form action="/follow?followId={{user._id}}&_method=PUT" method="post" id="follow-unfollow">
+                                <input type="hidden" name="_method" value="PUT">
+                                <button id="follow">Follow</button>
+                            </form>
+                        </div>
+                    {{/each}}
                 </div>
-                {{/each}}
-            </div>
             {{/if}}
         </section>
     </main>

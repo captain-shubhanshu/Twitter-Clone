@@ -30,19 +30,24 @@
             float: right;
         }
 
-        ul#navigation {
+        .navbar {
+            position: sticky;
+            top: 0px;
+        }
+
+        #navigation {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: rgba(116, 201, 254, 0.726);
+            background-color: rgb(44, 41, 88);
         }
 
-        ul#navigation li {
+        #navigation li {
             float: left;
         }
 
-        ul#navigation li a {
+        #navigation li a {
             display: block;
             color: white;
             text-align: center;
@@ -50,12 +55,12 @@
             text-decoration: none;
         }
 
-        ul#navigation li a:hover:not(.active) {
+        #navigation li a:hover:not(.active) {
             background-color: rgb(60, 110, 158);
         }
 
-        ul#navigation li a.active {
-            background-color: rgb(125, 116, 254);
+        #navigation li a.active {
+            background-color: rgb(116, 201, 254);
         }
 
         .post {
@@ -80,7 +85,7 @@
         </div>
     </header>
     <main>
-        <section>
+        <section class="navbar">
             <ul id="navigation">
                 <li><a href="/home">Home</a></li>
                 <li><a class="active" href="/explore">Explore</a></li>
@@ -94,18 +99,18 @@
                 <h2>Recent Posts</h2>
                 <hr>
                 {{#each posts as |post|}}
-                <div class="post">
-                    <div id="author-info">
-                        <p style="display: inline;"><strong><i>{{post.authorName}}</i></strong></p>
-                        <p style="display: inline;"><small><i>{{post.authorEmail}}</i></small></p>
+                    <div class="post">
+                        <div id="author-info">
+                            <p style="display: inline;"><strong><i>{{post.authorName}}</i></strong></p>
+                            <p style="display: inline;"><small><i>{{post.authorEmail}}</i></small></p>
+                        </div>
+                        <div id="title">
+                            <h3>{{post.title}}</h3>
+                        </div>
+                        <div id="content">
+                            <p>{{post.content}}</p>
+                        </div>
                     </div>
-                    <div id="title">
-                        <h3>{{post.title}}</h3>
-                    </div>
-                    <div id="content">
-                        <p>{{post.content}}</p>
-                    </div>
-                </div>
                 {{/each}}
             </div>
         </section>
